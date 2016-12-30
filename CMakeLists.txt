@@ -61,12 +61,6 @@ if (APPLE)
   set(CMAKE_CXX_ARCHIVE_FINISH "<CMAKE_RANLIB> -no_warning_for_no_symbols -c <TARGET>")
 endif()
 
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  # Always use libc++ on Clang
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -D_LIBCPP_VERSION")
-  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++ -lc++abi")
-endif()
-
 if (UNIX)
   add_definitions (-DUSE_PTHREAD)
 
@@ -109,7 +103,6 @@ elseif(WIN32)
   elseif (MINGW)
     add_definitions(-DUSE_WINTHREAD)
     add_definitions(-D_WIN32_WINNT=0x0502)
-    set(CMAKE_CXX_FLAGS "-mthreads ${CMAKE_CXX_FLAGS}")
   endif ()
 endif()
 

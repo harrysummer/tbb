@@ -103,6 +103,7 @@ elseif(WIN32)
   elseif (MINGW)
     add_definitions(-DUSE_WINTHREAD)
     add_definitions(-D_WIN32_WINNT=0x0502)
+    set(CMAKE_CXX_FLAGS "-mthreads ${CMAKE_CXX_FLAGS}")
   endif ()
 endif()
 
